@@ -27,14 +27,16 @@ mongoose.connect(process.env.URL)
     console.log(err)
 })
 
+// const __dirname=path.resolve();
 
-server.use(express.static(path.join(__dirname, "./frontend/build")));
+server.use(Router);
+server.use(router);
+server.use(userRouter)
+server.use(express.static(path.join(__dirname, "/frontend/build")));
 server.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "./frontend/build/index.html")),
+  res.sendFile(path.join(__dirname, "frontend" ,"build" ,"index.html")),
   function (err) {
     return res.status(500).send(err)
   }
 });
-server.use(Router);
-server.use(router);
-server.use(userRouter)
+
